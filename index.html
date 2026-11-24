@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Roof Services | Techos claros y sin complicaciones</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { --azul: #16243b; --naranja: #d95d39; --naranja2: #b84928; --fondo: #f8fafc; --texto: #1e293b; --suave: #64748b; --borde: #e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--texto); background: var(--fondo); line-height: 1.55; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+    /* Barra superior y menú */
+    .top { background: var(--azul); color: #e2e8f0; font-size: 13px; padding: 8px 0; }
+    .top .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    header { background: #fff; border-bottom: 1px solid var(--borde); position: sticky; top: 0; z-index: 20; }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 12px; }
+    .logo { font-weight: 800; font-size: 18px; color: var(--azul); display: flex; align-items: center; gap: 8px; }
+    .logo i { width: 12px; height: 12px; background: var(--naranja); border-radius: 3px; display: inline-block; }
+    nav { display: flex; gap: 20px; font-size: 15px; font-weight: 600; }
+    nav a:hover { color: var(--naranja); }
+    .acciones { display: flex; gap: 8px; align-items: center; }
+    .btn { background: var(--naranja); color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 700; font-size: 14px; border: 0; cursor: pointer; display: inline-block; }
+    .btn:hover { background: var(--naranja2); }
+    .btn-sec { background: #fff; color: var(--azul); border: 1.5px solid var(--azul); padding: 9px 16px; border-radius: 10px; font-weight: 700; font-size: 14px; cursor: pointer; display: inline-block; }
+    .btn-lang { background: var(--fondo); border: 1px solid var(--borde); color: var(--azul); padding: 8px 12px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; }
+    .btn-menu { display: none; background: #fff; border: 1px solid var(--borde); border-radius: 8px; padding: 7px 11px; font-size: 16px; cursor: pointer; }
+
+    /* Portada */
+    .hero { padding: 52px 0 44px; background: linear-gradient(180deg, #fff 0%, var(--fondo) 100%); }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 36px; align-items: center; }
+    .badge { display: inline-block; background: #fff1ec; color: var(--naranja2); font-weight: 700; font-size: 13px; padding: 6px 12px; border-radius: 99px; margin-bottom: 14px; }
+    h1 { font-size: clamp(28px, 4vw, 44px); line-height: 1.15; color: var(--azul); margin-bottom: 14px; font-weight: 800; }
+    .hero p { font-size: 17px; color: var(--suave); margin-bottom: 22px; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding-top: 18px; border-top: 1px solid var(--borde); }
+    .stats strong { display: block; font-size: 20px; color: var(--azul); }
+    .stats span { font-size: 13px; color: var(--suave); }
+    .hero-art { background: linear-gradient(135deg, #e0f2fe 0%, #fff7ed 100%); border-radius: 18px; padding: 24px; box-shadow: 0 18px 36px rgba(22,36,59,.1); }
+
+    /* Secciones y tarjetas */
+    section { padding: 56px 0; }
+    .blanca { background: #fff; }
+    .head { text-align: center; max-width: 600px; margin: 0 auto 30px; }
+    .head h2 { font-size: clamp(24px, 3vw, 32px); color: var(--azul); margin-bottom: 8px; font-weight: 800; }
+    .head p { color: var(--suave); }
+    .filtros { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+    .filtro { background: #fff; border: 1px solid var(--borde); padding: 8px 16px; border-radius: 99px; font-weight: 600; font-size: 14px; cursor: pointer; }
+    .filtro.activo { background: var(--azul); color: #fff; border-color: var(--azul); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background: #fff; border: 1px solid var(--borde); border-radius: 14px; padding: 22px; }
+    .card.oculta { display: none; }
+    .card h3 { font-size: 18px; color: var(--azul); margin: 8px 0; }
+    .card p { font-size: 14px; color: var(--suave); margin-bottom: 10px; }
+    .lista { list-style: none; font-size: 14px; }
+    .lista li { padding: 3px 0; }
+    .lista li::before { content: "✓ "; color: var(--naranja); font-weight: 800; }
+    .promo { margin-top: 24px; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 14px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .stars { color: #f59e0b; margin-bottom: 6px; }
+
+    /* Contacto */
+    .c-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .campo { margin-bottom: 14px; }
+    .campo label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 5px; color: var(--azul); }
+    .campo input, .campo select, .campo textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--borde); border-radius: 10px; font: inherit; background: var(--fondo); }
+    .ok { display: none; margin-top: 14px; padding: 12px; border-radius: 10px; background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; font-size: 14px; font-weight: 600; }
+    .ok.visible { display: block; }
+    footer { background: var(--azul); color: #cbd5e1; padding: 28px 0; font-size: 14px; }
+    footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; }
+
+    @media (max-width: 820px) {
+      .hero-grid, .grid, .c-grid, .stats { grid-template-columns: 1fr; }
+      nav { display: none; position: absolute; top: 68px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 18px; border-bottom: 1px solid var(--borde); }
+      nav.abierto { display: flex; }
+      .btn-menu { display: inline-block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. BARRA SUPERIOR -->
+  <div class="top">
+    <div class="wrap">
+      <span data-es="📍 Spring Valley y San Diego, CA • Lic. #799780/C39" data-en="📍 Spring Valley &amp; San Diego, CA • Lic. #799780/C39">📍 Spring Valley y San Diego, CA • Lic. #799780/C39</span>
+      <span data-es="🚨 Emergencias disponibles • Lun–Vie: 8 AM – 5 PM" data-en="🚨 Emergency services • Mon–Fri: 8 AM – 5 PM">🚨 Emergencias disponibles • Lun–Vie: 8 AM – 5 PM</span>
+    </div>
+  </div>
+
+  <!-- 2. MENÚ -->
+  <header>
+    <div class="wrap nav">
+      <a href="#inicio" class="logo"><i></i>Premium Roof Services</a>
+      <nav id="menuLinks">
+        <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
+        <a href="#nosotros" data-es="Nosotros" data-en="About">Nosotros</a>
+        <a href="#opiniones" data-es="Opiniones" data-en="Reviews">Opiniones</a>
+        <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+      </nav>
+      <div class="acciones">
+        <button type="button" class="btn-lang" id="btnIdioma">EN / ES</button>
+        <a href="#contacto" class="btn" data-es="Presupuesto gratis" data-en="Free Quote">Presupuesto gratis</a>
+        <button type="button" class="btn-menu" id="btnMenu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 3. PORTADA -->
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="badge" data-es="⭐ 4.9 en Google • A+ en Better Business Bureau" data-en="⭐ 4.9 on Google • A+ BBB Accredited">⭐ 4.9 en Google • A+ en Better Business Bureau</span>
+          <h1 data-es="Cuidamos tu techo de forma clara, honesta y sin sorpresas." data-en="Honest, simple roofing care for your home or business.">Cuidamos tu techo de forma clara, honesta y sin sorpresas.</h1>
+          <p data-es="Desde 1996 arreglamos goteras, cambiamos techos viejos y damos mantenimiento en San Diego. Te explicamos todo en palabras simples y te damos presupuesto gratis." data-en="Since 1996, we fix leaks, replace old roofs, and provide maintenance across San Diego with clear, fair pricing and free estimates.">Desde 1996 arreglamos goteras, cambiamos techos viejos y damos mantenimiento en San Diego. Te explicamos todo en palabras simples y te damos presupuesto gratis.</p>
+          <div class="hero-btns">
+            <a href="#contacto" class="btn" data-es="Pedir presupuesto gratis" data-en="Get Free Estimate">Pedir presupuesto gratis</a>
+            <a href="tel:6192398880" class="btn-sec">📞 (619) 239-8880</a>
+          </div>
+          <div class="stats">
+            <div><strong>+50 años</strong><span data-es="Experiencia del equipo" data-en="Team experience">Experiencia del equipo</span></div>
+            <div><strong>4.9 / 5 ★</strong><span data-es="+110 reseñas en Google" data-en="110+ Google reviews">+110 reseñas en Google</span></div>
+            <div><strong>$0</strong><span data-es="Presupuesto de techo nuevo" data-en="Free replacement quotes">Presupuesto de techo nuevo</span></div>
+          </div>
+        </div>
+
+        <!-- Ilustración ligera en SVG (sin archivos pesados) -->
+        <div class="hero-art">
+          <svg viewBox="0 0 420 280" width="100%" aria-label="Casa moderna con techo de teja">
+            <circle cx="345" cy="58" r="30" fill="#fbbf24"/>
+            <path d="M40 145 L210 48 L380 145 Z" fill="#d95d39"/>
+            <path d="M55 145 L210 58 L365 145 Z" fill="#b84928"/>
+            <rect x="72" y="145" width="276" height="105" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+            <rect x="182" y="182" width="56" height="68" rx="4" fill="#16243b"/>
+            <rect x="102" y="172" width="54" height="44" rx="4" fill="#bae6fd" stroke="#16243b" stroke-width="2"/>
+            <rect x="264" y="172" width="54" height="44" rx="4" fill="#bae6fd" stroke="#16243b" stroke-width="2"/>
+            <rect x="20" y="248" width="380" height="14" rx="7" fill="#86efac"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SERVICIOS -->
+    <section class="blanca" id="servicios">
+      <div class="wrap">
+        <div class="head">
+          <h2 data-es="¿Qué necesitas para tu techo?" data-en="What does your roof need?">¿Qué necesitas para tu techo?</h2>
+          <p data-es="Elige una categoría para ver cómo podemos ayudarte." data-en="Pick a category to see how we can help.">Elige una categoría para ver cómo podemos ayudarte.</p>
+        </div>
+        <div class="filtros" id="filtros">
+          <button type="button" class="filtro activo" data-cat="todos" data-es="Todos" data-en="All">Todos</button>
+          <button type="button" class="filtro" data-cat="casas" data-es="Para Casas" data-en="Homes">Para Casas</button>
+          <button type="button" class="filtro" data-cat="negocios" data-es="Para Negocios" data-en="Business">Para Negocios</button>
+          <button type="button" class="filtro" data-cat="hoa" data-es="Comunidades (HOA)" data-en="HOA">Comunidades (HOA)</button>
+        </div>
+        <div class="grid" id="listaServicios">
+          <article class="card" data-cat="casas">
+            <div>🏠</div>
+            <h3 data-es="Techo nuevo y goteras" data-en="New Roofs &amp; Leaks">Techo nuevo y goteras</h3>
+            <p data-es="Cambiamos techos completos o arreglamos goteras rápido." data-en="Full replacements and fast leak repairs.">Cambiamos techos completos o arreglamos goteras rápido.</p>
+            <ul class="lista">
+              <li data-es="Teja de barro y teja ligera" data-en="Clay &amp; lightweight tile">Teja de barro y teja ligera</li>
+              <li data-es="Teja asfáltica contra fuego" data-en="Class A fire-rated shingles">Teja asfáltica contra fuego</li>
+              <li data-es="Reparación de madera" data-en="Wood repairs">Reparación de madera</li>
+            </ul>
+          </article>
+          <article class="card" data-cat="casas">
+            <div>☀️</div>
+            <h3 data-es="Techos frescos y luz" data-en="Cool Roofs &amp; Skylights">Techos frescos y luz</h3>
+            <p data-es="Mantén tu casa fresca y ahorra en tu recibo de luz." data-en="Keep your home cooler and lower energy bills.">Mantén tu casa fresca y ahorra en tu recibo de luz.</p>
+            <ul class="lista">
+              <li data-es="White Cool Roofs" data-en="White Cool Roof systems">White Cool Roofs</li>
+              <li data-es="Tragaluces y ventilación solar" data-en="Skylights &amp; solar vents">Tragaluces y ventilación solar</li>
+              <li data-es="Aislamiento térmico" data-en="Blown-in roof insulation">Aislamiento térmico</li>
+            </ul>
+          </article>
+          <article class="card" data-cat="negocios">
+            <div>🏢</div>
+            <h3 data-es="Negocios y edificios" data-en="Commercial Roofs">Negocios y edificios</h3>
+            <p data-es="Techos planos duraderos y mantenimiento para tu local." data-en="Durable flat roofs and upkeep for your building.">Techos planos duraderos y mantenimiento para tu local.</p>
+            <ul class="lista">
+              <li data-es="Techos planos (PVC, TPO, Hot Tar)" data-en="Flat roofs (PVC, TPO, Hot Tar)">Techos planos (PVC, TPO, Hot Tar)</li>
+              <li data-es="Inspección y mantenimiento" data-en="Inspections &amp; maintenance">Inspección y mantenimiento</li>
+              <li data-es="Obra nueva y reparaciones" data-en="New construction &amp; repairs">Obra nueva y reparaciones</li>
+            </ul>
+          </article>
+          <article class="card" data-cat="hoa">
+            <div>🏘️</div>
+            <h3 data-es="Comunidades (HOA)" data-en="Homeowners Associations">Comunidades (HOA)</h3>
+            <p data-es="Experiencia comprobada en condominios y complejos." data-en="Trusted by multi-unit communities across San Diego.">Experiencia comprobada en condominios y complejos.</p>
+            <ul class="lista">
+              <li>Chateau Lake San Marcos</li>
+              <li>Hotel Del Coronado</li>
+              <li>Bay Vista Apartments &amp; Shady Tree</li>
+            </ul>
+          </article>
+          <article class="card" data-cat="casas negocios">
+            <div>🔍</div>
+            <h3 data-es="Revisión pre-compra o solar" data-en="Pre-Purchase &amp; Solar Check">Revisión pre-compra o solar</h3>
+            <p data-es="Te decimos el estado real de tu techo sin presiones." data-en="Honest inspection reports with zero sales pressure.">Te decimos el estado real de tu techo sin presiones.</p>
+            <ul class="lista">
+              <li data-es="Reporte claro antes de comprar casa" data-en="Clear home-buying report">Reporte claro antes de comprar casa</li>
+              <li data-es="Revisión previa a paneles solares" data-en="Pre-solar roof check">Revisión previa a paneles solares</li>
+            </ul>
+          </article>
+          <article class="card" data-cat="casas negocios hoa">
+            <div>🛡️</div>
+            <h3 data-es="Garantía y limpieza" data-en="Warranty &amp; Cleanup">Garantía y limpieza</h3>
+            <p data-es="Dejamos tu propiedad limpia todos los días." data-en="Daily cleanup and solid labor/material warranties.">Dejamos tu propiedad limpia todos los días.</p>
+            <ul class="lista">
+              <li data-es="Garantía en trabajo y material" data-en="Labor &amp; material warranties">Garantía en trabajo y material</li>
+              <li data-es="Equipo asegurado (Workers' Comp)" data-en="Full workers' comp coverage">Equipo asegurado (Workers' Comp)</li>
+            </ul>
+          </article>
+        </div>
+        <div class="promo">
+          <div>
+            <strong data-es="🎁 Descuentos para adultos mayores y militares" data-en="🎁 Senior &amp; military discounts available">🎁 Descuentos para adultos mayores y militares</strong>
+            <p style="font-size:14px;color:var(--suave)" data-es="Pregúntanos por las promociones vigentes este mes." data-en="Ask us about current seasonal promotions.">Pregúntanos por las promociones vigentes este mes.</p>
+          </div>
+          <a href="#contacto" class="btn" data-es="Consultar promoción" data-en="Ask about offers">Consultar promoción</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. NOSOTROS Y OPINIONES -->
+    <section id="nosotros">
+      <div class="wrap">
+        <div class="head">
+          <h2 data-es="¿Por qué elegirnos?" data-en="Why choose us?">¿Por qué elegirnos?</h2>
+          <p data-es="Fundados en 1996. Miembros de BBB (A+), San Diego Roofing Contractors Association y Apartment Association." data-en="Founded in 1996. BBB A+ accredited, San Diego Roofing Contractors Association &amp; Apartment Association members.">Fundados en 1996. Miembros de BBB (A+), San Diego Roofing Contractors Association y Apartment Association.</p>
+        </div>
+        <div class="grid" id="opiniones">
+          <div class="card"><div class="stars">★★★★★</div><p data-es="“Rápidos, honestos y dejan todo limpio. Los mejores del condado.” — Louisa A." data-en="“Great, quick, honest, and leave your property all cleaned up.” — Louisa A.">“Rápidos, honestos y dejan todo limpio. Los mejores del condado.” — Louisa A.</p></div>
+          <div class="card"><div class="stars">★★★★★</div><p data-es="“Empezó a gotear en la tormenta y al día siguiente ya lo habían parchado.” — Alma C." data-en="“Started to leak in the storm and they patched it the very next morning.” — Alma C.">“Empezó a gotear en la tormenta y al día siguiente ya lo habían parchado.” — Alma C.</p></div>
+          <div class="card"><div class="stars">★★★★★</div><p data-es="“Los mejores trabajadores los encuentras aquí. Muy profesionales.” — Alejandra / El Rojo d." data-en="“High quality work, friendly crew, and kept everything tidy.” — Alejandra / El Rojo d.">“Los mejores trabajadores los encuentras aquí. Muy profesionales.” — Alejandra / El Rojo d.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CONTACTO -->
+    <section class="blanca" id="contacto">
+      <div class="wrap c-grid">
+        <div class="card">
+          <h3 data-es="Contacto directo" data-en="Direct contact">Contacto directo</h3>
+          <p data-es="Atendemos Spring Valley, San Diego County y Sur de California." data-en="Serving Spring Valley, San Diego County &amp; Southern California.">Atendemos Spring Valley, San Diego County y Sur de California.</p>
+          <ul class="lista" style="margin-bottom:16px">
+            <li><strong>Tel:</strong> <a href="tel:6192398880">(619) 239-8880</a></li>
+            <li><strong>WhatsApp:</strong> <a href="tel:6193353294">(619) 335-3294</a></li>
+            <li><strong>Email:</strong> <a href="mailto:contact@premiumroofservices.com">contact@premiumroofservices.com</a></li>
+            <li><strong>Dirección:</strong> 659 Grand Ave, Spring Valley, CA 91977</li>
+          </ul>
+          <a href="tel:6192398880" class="btn" data-es="Llamar ahora" data-en="Call Now">Llamar ahora</a>
+        </div>
+        <form class="card" id="formContacto">
+          <div class="campo"><label for="nombre" data-es="Tu nombre" data-en="Your name">Tu nombre</label><input id="nombre" required placeholder="Ej. Carlos López"></div>
+          <div class="campo"><label for="tel" data-es="Tu teléfono" data-en="Your phone">Tu teléfono</label><input id="tel" type="tel" required placeholder="(619) 000-0000"></div>
+          <div class="campo">
+            <label for="tipo" data-es="¿Qué necesitas?" data-en="What do you need?">¿Qué necesitas?</label>
+            <select id="tipo">
+              <option data-es="Presupuesto para techo nuevo" data-en="Free roof replacement estimate">Presupuesto para techo nuevo</option>
+              <option data-es="Arreglar gotera o daño" data-en="Fix a leak or damage">Arreglar gotera o daño</option>
+              <option data-es="Mantenimiento o revisión" data-en="Maintenance or inspection">Mantenimiento o revisión</option>
+            </select>
+          </div>
+          <button type="submit" class="btn" style="width:100%" data-es="Enviar solicitud gratis" data-en="Send free request">Enviar solicitud gratis</button>
+          <div class="ok" id="msgOk"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span><strong>Premium Roof Services, Inc.</strong> • 659 Grand Ave, Spring Valley, CA 91977 • Lic. #799780/C39</span>
+      <span>© 2026 Premium Roof Services</span>
+    </div>
+  </footer>
+
+  <!-- 7. JAVASCRIPT SÚPER CORTO -->
+  <script>
+    let lang = 'es';
+    document.getElementById('btnIdioma').addEventListener('click', function () {
+      lang = lang === 'es' ? 'en' : 'es';
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-es][data-en]').forEach(function (el) {
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+    });
+
+    document.querySelectorAll('.filtro').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filtro').forEach(function (b) { b.classList.remove('activo'); });
+        btn.classList.add('activo');
+        const cat = btn.getAttribute('data-cat');
+        document.querySelectorAll('#listaServicios .card').forEach(function (c) {
+          c.classList.toggle('oculta', cat !== 'todos' && !c.getAttribute('data-cat').includes(cat));
+        });
+      });
+    });
+
+    document.getElementById('formContacto').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const ok = document.getElementById('msgOk');
+      ok.textContent = lang === 'es'
+        ? '¡Listo, ' + nombre + '! Recibimos tu solicitud. También puedes llamar al (619) 239-8880.'
+        : 'Thanks, ' + nombre + '! Request received. You can also call (619) 239-8880.';
+      ok.classList.add('visible');
+      this.reset();
+    });
+
+    document.getElementById('btnMenu').addEventListener('click', function () {
+      document.getElementById('menuLinks').classList.toggle('abierto');
+    });
+  </script>
+</body>
+</html>
